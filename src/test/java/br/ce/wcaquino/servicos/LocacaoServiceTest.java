@@ -6,6 +6,10 @@ import static org.junit.Assert.assertThat;
 
 import java.util.Date;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -20,16 +24,22 @@ import br.ce.wcaquino.utils.DataUtils;
 import junit.framework.Assert;
 
 public class LocacaoServiceTest {
+	private LocacaoService locacaoService;
+
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
 
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
+	@Before
+	public void setup() {
+		locacaoService = new LocacaoService();
+	}
+	
 	@Test
 	public void testeLocacao() throws Exception {
 		// cenario
-		LocacaoService locacaoService = new LocacaoService();
 		Usuario usuario = new Usuario("Leandro");
 		Filme filme = new Filme("Titanic", 10, 5.0);
 
@@ -47,7 +57,6 @@ public class LocacaoServiceTest {
 	@Test(expected = FilmeSemEstoqueExceptions.class)
 	public void testeLocacao_filmeSemEstoque() throws Exception {
 		// cenario
-		LocacaoService locacaoService = new LocacaoService();
 		Usuario usuario = new Usuario("Leandro");
 		Filme filme = new Filme("Titanic", 0, 5.0);
 
@@ -59,7 +68,6 @@ public class LocacaoServiceTest {
 	@Test
 	public void testeLocacao_usuarioVazio() throws FilmeSemEstoqueExceptions {
 		// cenario
-		LocacaoService locacaoService = new LocacaoService();
 		Filme filme = new Filme("Titanic", 1, 5.0);
 
 		// acao
@@ -69,21 +77,19 @@ public class LocacaoServiceTest {
 		} catch (LocadoraException e) {
 			assertThat(e.getMessage(), is("Usuario vazio"));
 		}
-		
+
 	}
 
 	@Test
 	public void testeLocacao_filmeVazio() throws FilmeSemEstoqueExceptions, LocadoraException {
 		// cenario
-		LocacaoService locacaoService = new LocacaoService();
 		Usuario usuario = new Usuario("Leandro");
 
 		expectedException.expect(LocadoraException.class);
 		expectedException.expectMessage("Filme vazio");
 
-		
 		// acao
 		locacaoService.alugarFilme(usuario, null);
-		
+
 	}
 }
