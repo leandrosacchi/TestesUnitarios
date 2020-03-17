@@ -4,7 +4,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,10 +43,10 @@ public class LocacaoServiceTest {
 	public void testeLocacao() throws Exception {
 		// cenario
 		Usuario usuario = new Usuario("Leandro");
-		Filme filme = new Filme("Titanic", 10, 5.0);
+		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 10, 5.0));
 
 		// acao
-		Locacao locacao = locacaoService.alugarFilme(usuario, filme);
+		Locacao locacao = locacaoService.alugarFilme(usuario, filmes);
 
 		// verificacao
 		error.checkThat(locacao.getValor(), is(equalTo(5.0)));
@@ -58,21 +60,21 @@ public class LocacaoServiceTest {
 	public void testeLocacao_filmeSemEstoque() throws Exception {
 		// cenario
 		Usuario usuario = new Usuario("Leandro");
-		Filme filme = new Filme("Titanic", 0, 5.0);
+		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 0, 4.0));
 
 		// acao
-		Locacao locacao = locacaoService.alugarFilme(usuario, filme);
+		Locacao locacao = locacaoService.alugarFilme(usuario, filmes);
 
 	}
 
 	@Test
 	public void testeLocacao_usuarioVazio() throws FilmeSemEstoqueExceptions {
 		// cenario
-		Filme filme = new Filme("Titanic", 1, 5.0);
+		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 10, 5.0));
 
 		// acao
 		try {
-			locacaoService.alugarFilme(null, filme);
+			locacaoService.alugarFilme(null, filmes);
 			Assert.fail();
 		} catch (LocadoraException e) {
 			assertThat(e.getMessage(), is("Usuario vazio"));
