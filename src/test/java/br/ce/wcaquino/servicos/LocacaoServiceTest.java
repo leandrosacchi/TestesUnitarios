@@ -11,8 +11,10 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -42,6 +44,9 @@ public class LocacaoServiceTest {
 	
 	@Test
 	public void deveAlugarFilme() throws Exception {
+		Assume.assumeFalse(DataUtils.verificarDiaSemana(new Date(), Calendar.SATURDAY));
+
+		
 		// cenario
 		Usuario usuario = new Usuario("Leandro");
 		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 10, 5.0));
@@ -154,6 +159,8 @@ public class LocacaoServiceTest {
 	
 	@Test
 	public void nãoDeveDevolverFilmeNoDomingo() throws FilmeSemEstoqueExceptions, LocadoraException {
+		Assume.assumeTrue(DataUtils.verificarDiaSemana(new Date(), Calendar.SATURDAY));
+		
 		//cenario
 		Usuario usuario = new Usuario ("Leandro");
 		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 10, 4.0));
