@@ -100,7 +100,7 @@ public class LocacaoServiceTest {
 		locacaoService.alugarFilme(usuario, null);
 
 	}
-	
+	/* Testes simplificados em CalculoValorLocacaoTest
 	@Test
 	public void devePagar75PctNoFilme3() throws FilmeSemEstoqueExceptions, LocadoraException {
 		//cenario
@@ -128,7 +128,7 @@ public class LocacaoServiceTest {
 		
 	}
 	@Test
-	public void devePagar50PctNoFilme5() throws FilmeSemEstoqueExceptions, LocadoraException {
+	public void devePagar25PctNoFilme5() throws FilmeSemEstoqueExceptions, LocadoraException {
 		//cenario
 		Usuario usuario = new Usuario ("Leandro");
 		List<Filme> filmes = Arrays.asList( 
@@ -143,7 +143,7 @@ public class LocacaoServiceTest {
 		
 	}
 	@Test
-	public void devePagar100PctNoFilme6() throws FilmeSemEstoqueExceptions, LocadoraException {
+	public void devePagar00PctNoFilme6() throws FilmeSemEstoqueExceptions, LocadoraException {
 		//cenario
 		Usuario usuario = new Usuario ("Leandro");
 		List<Filme> filmes = Arrays.asList( new Filme("Titanic", 10, 4.0), new Filme("Parasita", 3, 4.0), new Filme("Moonlight", 1, 4.0), new Filme("Roma", 1, 4.0)
@@ -155,7 +155,7 @@ public class LocacaoServiceTest {
 		//verificacao
 		assertThat(resultado.getValor(), is(14.0));
 		
-	}
+	} */
 	
 	@Test
 	public void nãoDeveDevolverFilmeNoDomingo() throws FilmeSemEstoqueExceptions, LocadoraException {
