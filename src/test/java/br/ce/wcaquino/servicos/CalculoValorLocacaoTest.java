@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.mockito.Mockito;
 
 import br.ce.wcaquino.dao.LocacaoDAO;
 import br.ce.wcaquino.dao.LocacaoDAOFake;
@@ -34,7 +35,7 @@ public class CalculoValorLocacaoTest {
 	@Before
 	public void setup() {
 		locacaoService = new LocacaoService();
-		LocacaoDAO dao = new LocacaoDAOFake();
+		LocacaoDAO dao = Mockito.mock(LocacaoDAO.class);
 		locacaoService.setLocacaoDAO(dao);
 	}
 
