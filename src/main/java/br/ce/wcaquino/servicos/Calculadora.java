@@ -20,6 +20,11 @@ public class Calculadora {
 		}
 		return a / b;
 	}
+	
+	public int divide(String a, String b) throws NaoPodeDividirPorZeroException {
+		return Integer.valueOf(a) / Integer.valueOf(b);
+	}
+
 
 	public int multiplicar(int a, int b) {
 		// TODO Auto-generated method stub

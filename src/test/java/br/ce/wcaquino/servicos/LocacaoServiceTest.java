@@ -183,8 +183,4 @@ public class LocacaoServiceTest {
 
 	}
 
-	public static void main(String[] args) {
-		new BuilderMaster().gerarCodigoClasse(Locacao.class);
-	}
-
 }

@@ -68,6 +68,16 @@ public class CalculadoraTest {
 	}
 	
 	@Test
+	public void deveDividir() throws NaoPodeDividirPorZeroException {
+		String a = "6";
+		String b = "3";
+		
+		int resultado = calc.divide(a, b);
+		
+		Assert.assertEquals(2, resultado);
+	}
+	
+	@Test
 	public void deveMultiplicarDoisValores() {
 		//cenario
 		int a = 2;
