@@ -30,6 +30,7 @@ import org.junit.rules.ExpectedException;
 
 import br.ce.wcaquino.builders.FilmeBuilder;
 import br.ce.wcaquino.builders.UsuarioBuilder;
+import br.ce.wcaquino.dao.LocacaoDAO;
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
@@ -41,6 +42,7 @@ import buildermaster.BuilderMaster;
 import junit.framework.Assert;
 
 public class LocacaoServiceTest {
+	
 	private LocacaoService locacaoService;
 
 	@Rule
