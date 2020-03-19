@@ -49,7 +49,7 @@ public class CalculoValorLocacaoTest {
 		locacaoService.setLocacaoDAO(dao);
 		spc = Mockito.mock(SPCService.class);
 		locacaoService.setSPCService(spc);
-		*/
+		*/ 
 	}
 
 	@Parameter

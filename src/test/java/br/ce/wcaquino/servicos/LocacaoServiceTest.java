@@ -34,6 +34,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -75,13 +76,11 @@ public class LocacaoServiceTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		/*
-		locacaoService = new LocacaoService();
-		dao = Mockito.mock(LocacaoDAO.class);
-		locacaoService.setLocacaoDAO(dao);
-		spc = Mockito.mock(SPCService.class);
-		locacaoService.setSPCService(spc);
-		email = Mockito.mock(EmailService.class);
-		locacaoService.setEmailService(email);*/
+		 * locacaoService = new LocacaoService(); dao = Mockito.mock(LocacaoDAO.class);
+		 * locacaoService.setLocacaoDAO(dao); spc = Mockito.mock(SPCService.class);
+		 * locacaoService.setSPCService(spc); email = Mockito.mock(EmailService.class);
+		 * locacaoService.setEmailService(email);
+		 */
 
 	}
 
@@ -215,7 +214,7 @@ public class LocacaoServiceTest {
 	}
 
 	@Test
-	public void naoDeveAlugarFilmeParaNegativadoSPC() throws FilmeSemEstoqueExceptions {
+	public void naoDeveAlugarFilmeParaNegativadoSPC() throws Exception {
 		// cenario
 		Usuario usuario = umUsuario().agora();
 		Usuario usuario2 = umUsuario().comNome("User 2").agora();
@@ -244,10 +243,8 @@ public class LocacaoServiceTest {
 		Usuario usuario2 = umUsuario().comNome("User em dia").agora();
 		Usuario usuario3 = umUsuario().comNome("Outro atrasado").agora();
 
-
 		List<Locacao> locacoes = Arrays.asList(umLocacao().comUsuario(usuario).atrasada().agora(),
-				umLocacao().comUsuario(usuario2).agora(),
-				umLocacao().atrasada().comUsuario(usuario3).agora(),
+				umLocacao().comUsuario(usuario2).agora(), umLocacao().atrasada().comUsuario(usuario3).agora(),
 				umLocacao().atrasada().comUsuario(usuario3).agora());
 
 		when(dao.obterLocacoesPendentes()).thenReturn(locacoes);
@@ -263,6 +260,43 @@ public class LocacaoServiceTest {
 		verifyNoMoreInteractions(email);
 		verifyZeroInteractions(spc);
 
+	}
+
+	@Test
+	public void deveTratarErroNoSPC() throws Exception {
+		// cenario
+		Usuario usuario = umUsuario().agora();
+		List<Filme> filmes = Arrays.asList(umFilme().agora());
+
+		when(spc.possuiNegativacao(usuario)).thenThrow(new Exception("Falha catastrofica"));
+		expectedException.expect(LocadoraException.class);
+		expectedException.expectMessage("Problema com SPC, tente novamente");
+		
+		// acao
+		locacaoService.alugarFilme(usuario, filmes);
+
+		
+		// verificacao
+	}
+	
+	@Test
+	public void deveProrrogarUmaLocacao() {
+		//cenario
+		Locacao locacao = umLocacao().agora();
+		
+		
+		//acao
+		locacaoService.prorrogarLocacao(locacao,3);
+		
+		//verificacao
+		ArgumentCaptor<Locacao> argCapt = ArgumentCaptor.forClass(Locacao.class);
+		Mockito.verify(dao).salvar(argCapt.capture());
+		Locacao locacaoRetornada = argCapt.getValue();
+		
+		
+		error.checkThat(locacaoRetornada.getValor(), is(12.0));
+		error.checkThat(locacaoRetornada.getDataLocacao(), ehHoje());
+		error.checkThat(locacaoRetornada.getDataRetorno(), ehHojeComDiferencaDias(3));
 	}
 
 }
