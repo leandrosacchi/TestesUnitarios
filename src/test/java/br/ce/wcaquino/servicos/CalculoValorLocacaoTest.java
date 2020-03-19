@@ -32,11 +32,17 @@ import br.ce.wcaquino.exceptions.LocadoraException;
 public class CalculoValorLocacaoTest {
 	private LocacaoService locacaoService;
 
+	private SPCService spc;
+	
+	private LocacaoDAO dao;
+
 	@Before
 	public void setup() {
 		locacaoService = new LocacaoService();
-		LocacaoDAO dao = Mockito.mock(LocacaoDAO.class);
+		dao = Mockito.mock(LocacaoDAO.class);
 		locacaoService.setLocacaoDAO(dao);
+		spc = Mockito.mock(SPCService.class);
+		locacaoService.setSPCService(spc);
 	}
 
 	@Parameter

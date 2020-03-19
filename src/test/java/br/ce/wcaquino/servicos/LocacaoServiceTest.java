@@ -46,6 +46,10 @@ import junit.framework.Assert;
 public class LocacaoServiceTest {
 	
 	private LocacaoService locacaoService;
+	
+	private SPCService spc;
+	
+	private LocacaoDAO dao;
 
 	@Rule
 	public ErrorCollector error = new ErrorCollector();
@@ -56,8 +60,10 @@ public class LocacaoServiceTest {
 	@Before
 	public void setup() {
 		locacaoService = new LocacaoService();
-		LocacaoDAO dao = Mockito.mock(LocacaoDAO.class);
+		dao = Mockito.mock(LocacaoDAO.class);
 		locacaoService.setLocacaoDAO(dao);
+		spc = Mockito.mock(SPCService.class);
+		locacaoService.setSPCService(spc);
 	}
 
 	@Test
@@ -187,6 +193,22 @@ public class LocacaoServiceTest {
 		// Assert.assertTrue(ehSegunda);
 		assertThat(retorno.getDataRetorno(), caiNumaSegunda());
 
+	}
+	
+	@Test
+	public void naoDeveAlugarFilmeParaNegativadoSPC() throws FilmeSemEstoqueExceptions, LocadoraException {
+		//cenario
+		Usuario usuario = umUsuario().agora();
+		Usuario usuario2 = umUsuario().comNome("Usuario 2").agora();
+		List <Filme> filmes = Arrays.asList(umFilme().agora());
+		
+		Mockito.when(spc.possuiNegativacao(usuario)).thenReturn(true);
+		
+		expectedException.expect(LocadoraException.class);
+		expectedException.expectMessage("Usuario negativado"); 			
+		
+		//acao
+		locacaoService.alugarFilme(usuario, filmes);
 	}
 
 }
