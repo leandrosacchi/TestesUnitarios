@@ -21,6 +21,10 @@ public class Calculadora {
 		return a / b;
 	}
 	
+	public void imprime() {
+		System.out.println("Passei aqui");
+	}
+	
 	public int divide(String a, String b) throws NaoPodeDividirPorZeroException {
 		return Integer.valueOf(a) / Integer.valueOf(b);
 	}
