@@ -34,7 +34,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import br.ce.wcaquino.builders.FilmeBuilder;
 import br.ce.wcaquino.builders.LocacaoBuilder;
@@ -52,13 +55,14 @@ import buildermaster.BuilderMaster;
 import junit.framework.Assert;
 
 public class LocacaoServiceTest {
-
+	@InjectMocks
 	private LocacaoService locacaoService;
 
+	@Mock
 	private SPCService spc;
-
+	@Mock
 	private LocacaoDAO dao;
-
+	@Mock
 	private EmailService email;
 
 	@Rule
@@ -69,13 +73,15 @@ public class LocacaoServiceTest {
 
 	@Before
 	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		/*
 		locacaoService = new LocacaoService();
 		dao = Mockito.mock(LocacaoDAO.class);
 		locacaoService.setLocacaoDAO(dao);
 		spc = Mockito.mock(SPCService.class);
 		locacaoService.setSPCService(spc);
 		email = Mockito.mock(EmailService.class);
-		locacaoService.setEmailService(email);
+		locacaoService.setEmailService(email);*/
 
 	}
 

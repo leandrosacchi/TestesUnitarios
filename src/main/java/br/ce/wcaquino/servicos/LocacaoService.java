@@ -86,7 +86,7 @@ public class LocacaoService {
 			emailService.notificarAtraso(locacao.getUsuario());
 		}
 	}
-
+/*
 	public void setEmailService(EmailService email) {
 		emailService = email;
 	}
@@ -98,5 +98,6 @@ public class LocacaoService {
 	public void setSPCService(SPCService spc) {
 		spcService = spc;
 	}
+	*/
 
 }
