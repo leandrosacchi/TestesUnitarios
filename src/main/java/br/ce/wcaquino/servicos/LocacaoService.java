@@ -76,7 +76,7 @@ public class LocacaoService {
 	}
 
 	private Double calcularValorLocacao(List<Filme> filmes) {
-		Double valorTotal = 0d;
+ 		Double valorTotal = 0d;
 		for(int i=0; i<filmes.size(); i++) {
 			Filme filme = filmes.get(i);
 			Double valorFilme = filme.getPrecoLocacao();
