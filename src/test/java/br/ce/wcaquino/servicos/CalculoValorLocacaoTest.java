@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -43,6 +45,8 @@ public class CalculoValorLocacaoTest {
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
+		System.out.println("Iniciando 3");
+		CalculadoraTest.ordem.append(3);
 		/*
 		locacaoService = new LocacaoService();
 		dao = Mockito.mock(LocacaoDAO.class);
@@ -51,7 +55,17 @@ public class CalculoValorLocacaoTest {
 		locacaoService.setSPCService(spc);
 		*/ 
 	}
-
+	
+	@After
+	public void tearDown () {
+		System.out.println("finalizando 3.");
+	}
+	
+	@AfterClass
+	public static void tearDownClass () {
+		System.out.println(CalculadoraTest.ordem.toString());
+	}
+	
 	@Parameter
 	public List<Filme> filmes;
 	@Parameter(value = 1)
@@ -80,9 +94,11 @@ public class CalculoValorLocacaoTest {
 	}
 
 	@Test
-	public void deveCalcularValorLocacaoConsiderandoDescontos() throws FilmeSemEstoqueExceptions, LocadoraException {
+	public void deveCalcularValorLocacaoConsiderandoDescontos() throws FilmeSemEstoqueExceptions, LocadoraException, InterruptedException {
 		// cenario
 		Usuario usuario = umUsuario().agora();
+		
+		Thread.sleep(5000);
 
 		// acao
 		Locacao resultado = locacaoService.alugarFilme(usuario, filmes);

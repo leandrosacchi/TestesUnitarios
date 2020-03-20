@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -49,7 +50,6 @@ import br.ce.wcaquino.runners.ParallelRunner;
 import br.ce.wcaquino.utils.DataUtils;
 import junit.framework.Assert;
 
-@RunWith(ParallelRunner.class)
 public class LocacaoServiceTest {
 	
 	@InjectMocks
@@ -73,6 +73,7 @@ public class LocacaoServiceTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		System.out.println("iniciando 2");
+		CalculadoraTest.ordem.append(2);
 		/*
 		 * locacaoService = new LocacaoService(); dao = Mockito.mock(LocacaoDAO.class);
 		 * locacaoService.setLocacaoDAO(dao); spc = Mockito.mock(SPCService.class);
@@ -85,6 +86,11 @@ public class LocacaoServiceTest {
 	@After
 	public void tearDown () {
 		System.out.println("finalizando 2..");
+	}
+	
+	@AfterClass
+	public static void tearDownClass () {
+		System.out.println(CalculadoraTest.ordem.toString());
 	}
 
 	@Test

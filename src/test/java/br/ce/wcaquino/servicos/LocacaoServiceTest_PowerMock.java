@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,6 +58,8 @@ public class LocacaoServiceTest_PowerMock {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		locacaoService = PowerMockito.spy(locacaoService);
+		System.out.println("Iniciando 4");
+		CalculadoraTest.ordem.append(4);
 		/*
 		 * locacaoService = new LocacaoService(); dao = Mockito.mock(LocacaoDAO.class);
 		 * locacaoService.setLocacaoDAO(dao); spc = Mockito.mock(SPCService.class);
@@ -64,6 +68,17 @@ public class LocacaoServiceTest_PowerMock {
 		 */
 
 	}
+	
+	@After
+	public void tearDown () {
+		System.out.println("finalizando 4.");
+	}
+	
+	@AfterClass
+	public static void tearDownClass () {
+		System.out.println(CalculadoraTest.ordem.toString());
+	}
+	
 
 	@Test
 	public void deveAlugarFilme() throws Exception {

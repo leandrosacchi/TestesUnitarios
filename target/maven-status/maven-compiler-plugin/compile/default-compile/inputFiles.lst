@@ -1,0 +1,13 @@
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\servicos\SPCService.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\dao\LocacaoDAOFake.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\exceptions\NaoPodeDividirPorZeroException.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\entidades\Filme.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\exceptions\FilmeSemEstoqueExceptions.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\servicos\EmailService.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\exceptions\LocadoraException.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\servicos\Calculadora.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\servicos\LocacaoService.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\dao\LocacaoDAO.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\utils\DataUtils.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\entidades\Usuario.java
+C:\Users\leand\Documents\GitHub\TestesUnitarios\src\main\java\br\ce\wcaquino\entidades\Locacao.java
