@@ -23,11 +23,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -43,9 +45,11 @@ import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
 import br.ce.wcaquino.exceptions.FilmeSemEstoqueExceptions;
 import br.ce.wcaquino.exceptions.LocadoraException;
+import br.ce.wcaquino.runners.ParallelRunner;
 import br.ce.wcaquino.utils.DataUtils;
 import junit.framework.Assert;
 
+@RunWith(ParallelRunner.class)
 public class LocacaoServiceTest {
 	
 	@InjectMocks
@@ -68,6 +72,7 @@ public class LocacaoServiceTest {
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
+		System.out.println("iniciando 2");
 		/*
 		 * locacaoService = new LocacaoService(); dao = Mockito.mock(LocacaoDAO.class);
 		 * locacaoService.setLocacaoDAO(dao); spc = Mockito.mock(SPCService.class);
@@ -75,6 +80,11 @@ public class LocacaoServiceTest {
 		 * locacaoService.setEmailService(email);
 		 */
 
+	}
+	
+	@After
+	public void tearDown () {
+		System.out.println("finalizando 2..");
 	}
 
 	@Test
